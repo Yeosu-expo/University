@@ -72,7 +72,7 @@ WHERE 단가>=2000 AND 단가<=3000;
 
 _  >> 1개의 문자
 
-![Alt text](/img/database_5_18/Untitled.png)
+![Alt text](./img/database_5_18/Untitled.png)
 
 #### 예제22
 
@@ -202,3 +202,5 @@ SELECT 제품번호, 품명, 가격
 FROM 제품
 WHERE 가격<2000;
 ```
+
+
