@@ -180,7 +180,7 @@ GROUP BY 도서번호;
 ```sql
 SELECT 제조업체, COUNT(*) AS 제품수, MAX(단가) AS 최고가
 FROM 제품
-GROUP BY 제조업ㅊ HAVING COUNT(*) >=3;
+GROUP BY 제조업체 HAVING COUNT(*) >=3;
 ```
 | --  | 제조업체 | 제품수 | 최고가 |
 | --- | -------- | ------ | ------ |
