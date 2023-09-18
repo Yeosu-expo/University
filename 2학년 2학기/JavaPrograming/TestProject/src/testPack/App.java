@@ -16,14 +16,14 @@ public class App {
         }
     }
 
-    public static boolean isPass(int t1, int t2, int t3, int t4) {
-        if(t1>40 && t2>40 && t3>40 && t4>40){
+    public static boolean isPass(int score[]) {
+        if(score[0]>40 && score[1]>40 && score[2]>40 && score[3]>40){
 
         }
         else{
             return false;
         }
-        double avg = (double)(t1+t2+t3+t4)/4;
+        double avg = (double)(score[0]+score[1]+score[2]+score[3])/4;
         if(avg >= 80){
             return true;
         }
@@ -40,30 +40,32 @@ public class App {
     }
 
     public static void gaType(Scanner sc){
+        int score[] = new int[4];
         System.out.print("한국어: ");
-        int ko = sc.nextInt();
+        score[0] = sc.nextInt();
         System.out.print("컴퓨터구조: ");
-        int cs = sc.nextInt();
+        score[1] = sc.nextInt();
         System.out.print("데이터베이스: ");
-        int db = sc.nextInt();
+        score[2] = sc.nextInt();
         System.out.print("소프트웨어공학: ");
-        int se = sc.nextInt();
+        score[3] = sc.nextInt();
 
-        boolean res = isPass(ko, cs, db, se);
+        boolean res = isPass(score);
         finalResult(res);
     }
 
     public static void naType(Scanner sc){
+        int score[] = new int[4];
         System.out.print("한국어: ");
-        int ko = sc.nextInt();
+        score[0] = sc.nextInt();
         System.out.print("영어: ");
-        int en = sc.nextInt();
+        score[1] = sc.nextInt();
         System.out.print("세법: ");
-        int tax = sc.nextInt();
+        score[2] = sc.nextInt();
         System.out.print("국제법: ");
-        int law = sc.nextInt();
+        score[3] = sc.nextInt();
 
-        boolean res = isPass(ko, en, tax, law);
+        boolean res = isPass(score);
         finalResult(res);
     }
     
