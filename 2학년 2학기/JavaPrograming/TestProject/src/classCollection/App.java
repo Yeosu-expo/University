@@ -1,4 +1,4 @@
-package testPack2;
+package classCollection;
 
 public class App {
     public static void main(String[] args){
