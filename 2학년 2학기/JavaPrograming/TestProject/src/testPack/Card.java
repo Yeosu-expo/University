@@ -4,12 +4,31 @@ public class Card {
     String shape;
     int num;
 
-    public Card(){}
+    public Card(){
+        int shape = (int)(Math.random()*4);
+        int num = (int)(Math.random()*12)+1;
+
+        this.shape = strShape(shape);
+        this.num = num;
+    }
+
+    public Card(String shape){
+        this.shape = shape;
+        this.num = (int)(Math.random()*12)+1;
+    }
+
+    public Card(int num){
+        int shape = (int)(Math.random()*4);
+
+        this.shape = strShape(shape);
+        this.num = num;
+    }
 
     public Card(String shape, int num){
         this.shape = shape;
         this.num = num;
     }
+
     public void getCard(){
         int shape = (int)(Math.random()*4);
         int num = (int)(Math.random()*12)+1;
@@ -41,6 +60,13 @@ public class Card {
         }
     }
     public int whoisBig(Card c1, Card c2){
+        if(c1.num ==  1&&c2.num != 1){
+            return 0;
+        }
+        else if(c2.num == 1&&c1.num != 1){
+            return 1;
+        }
+
         if(c1.num > c2.num){
             return 0;
         }

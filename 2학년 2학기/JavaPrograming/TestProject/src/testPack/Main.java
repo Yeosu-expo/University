@@ -44,14 +44,13 @@ public class Main{
     }
     public static void main(String[] args){
         Card card1 = new Card();
-        Card card2 = new Card();
-        card1.getCard();
-        while(true){
-            card2.getCard();
-            if(!card1.isOverlap(card2))
-                break;
-        }
+        Card card2 = new Card("다이아몬드");
+        Card card3 = new Card(1);
+        Card card4 = new Card("하트", 1);
 
-        card1.compete(card2);
+        card1.printCard(1);
+        card2.printCard(2);
+        card3.printCard(3);
+        card4.printCard(4);
     }
 }
