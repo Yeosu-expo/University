@@ -43,14 +43,29 @@ public class Main{
             sc.close();
     }
     public static void main(String[] args){
-        Card card1 = new Card();
-        Card card2 = new Card("다이아몬드");
-        Card card3 = new Card(1);
-        Card card4 = new Card("하트", 1);
+        Card cardArr[] = new Card[10];
 
-        card1.printCard(1);
-        card2.printCard(2);
-        card3.printCard(3);
-        card4.printCard(4);
+        cardArr[0] = new Card();
+        for(int i=1;i<10;i++){
+            cardArr[i] = new Card();
+            boolean res = cardArr[i].isOverlapInArr(cardArr, cardArr[i], i);
+
+            if(res)
+                i--;
+        }
+
+        Card sortedArr[];
+        sortedArr = cardArr[0].sorting(cardArr);
+
+
+        for(int i=0;i<10;i++) {
+            sortedArr[i].printCard(i+1);
+        }
+
+        System.out.println("\n");
+
+        for(int i=0;i<10;i++) {
+            cardArr[i].printCard(i+1);
+        }
     }
 }

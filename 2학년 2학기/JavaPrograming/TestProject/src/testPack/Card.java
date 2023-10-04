@@ -43,10 +43,19 @@ public class Card {
             return false;
     }
 
+    public boolean isOverlapInArr(Card[] arr, Card newCard, int size) {
+        for(int i=0;i<size;i++){
+            boolean res = newCard.isOverlap(arr[i]);
+            if(res)
+                return true;
+        }
+        return false;
+    }
+
     public void printCard(int num){
         System.out.println("Player"+num+": "+this.shape+", "+strNum(this.num));
     }
-    
+
     public void compete(Card rival){
         this.printCard(1);
         rival.printCard(2);
@@ -122,5 +131,31 @@ public class Card {
             default :
                 return Integer.toString(num);
         }
+    }
+    public Card[] sorting(Card[] arr){
+        Card tmpArr[] = new Card[10];
+
+        int isChecked[] = new int[10];
+        int maxx;
+        for(int i=0;i<10;i++) {
+            maxx = 0;
+            for(int j=1;j<10;j++){
+                if(isChecked[maxx]==1){
+                    maxx++;
+                    continue;
+                }
+                if(isChecked[j]==1){
+                    continue;
+                }
+                int res = whoisBig(arr[maxx], arr[j]);
+                
+                if(res==1)
+                    maxx=j;
+            }
+            isChecked[maxx]=1;
+            tmpArr[i]=arr[maxx];
+        }
+
+        return tmpArr;
     }
 }
