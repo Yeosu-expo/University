@@ -1,10 +1,10 @@
 package testPack;
 
-public class Card {
+public class OneCard {
     String shape;
     int num;
 
-    public Card(){
+    public OneCard(){
         int shape = (int)(Math.random()*4);
         int num = (int)(Math.random()*12)+1;
 
@@ -12,19 +12,19 @@ public class Card {
         this.num = num;
     }
 
-    public Card(String shape){
+    public OneCard(String shape){
         this.shape = shape;
         this.num = (int)(Math.random()*12)+1;
     }
 
-    public Card(int num){
+    public OneCard(int num){
         int shape = (int)(Math.random()*4);
 
         this.shape = strShape(shape);
         this.num = num;
     }
 
-    public Card(String shape, int num){
+    public OneCard(String shape, int num){
         this.shape = shape;
         this.num = num;
     }
@@ -36,14 +36,14 @@ public class Card {
         this.shape = strShape(shape);
         this.num = num;
     }
-    public boolean isOverlap(Card rival){
+    public boolean isOverlap(OneCard rival){
         if(this.num==rival.num&&this.shape==rival.shape)
             return true;
         else
             return false;
     }
 
-    public boolean isOverlapInArr(Card[] arr, Card newCard, int size) {
+    public boolean isOverlapInArr(OneCard[] arr, OneCard newCard, int size) {
         for(int i=0;i<size;i++){
             boolean res = newCard.isOverlap(arr[i]);
             if(res)
@@ -56,7 +56,7 @@ public class Card {
         System.out.println("Player"+num+": "+this.shape+", "+strNum(this.num));
     }
 
-    public void compete(Card rival){
+    public void compete(OneCard rival){
         this.printCard(1);
         rival.printCard(2);
 
@@ -68,7 +68,7 @@ public class Card {
             System.out.println("Player2 won!!");
         }
     }
-    public int whoisBig(Card c1, Card c2){
+    public int whoisBig(OneCard c1, OneCard c2){
         if(c1.num ==  1&&c2.num != 1){
             return 0;
         }
@@ -132,8 +132,8 @@ public class Card {
                 return Integer.toString(num);
         }
     }
-    public Card[] sorting(Card[] arr){
-        Card tmpArr[] = new Card[10];
+    public OneCard[] sorting(OneCard[] arr){
+        OneCard tmpArr[] = new OneCard[10];
 
         int isChecked[] = new int[10];
         int maxx;
@@ -158,4 +158,8 @@ public class Card {
 
         return tmpArr;
     }
+}
+
+class UNO extends OneCard {
+    
 }

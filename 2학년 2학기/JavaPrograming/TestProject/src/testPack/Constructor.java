@@ -46,7 +46,7 @@ class HybridWaterCar extends HybridCar {
     }
 }
 
-class Constructor {
+public class Constructor {
     public static void main(String[] args) {
        HybridWaterCar hwCar1 = new HybridWaterCar(4.2, 2);
        hwCar1.showCurrentGauge();
