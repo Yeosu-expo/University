@@ -1,6 +1,6 @@
 package cardPack;
 
-class Card {
+abstract class Card implements Comparable<Card>{
     String type;
     int number;
     public void randomCard() {
@@ -37,12 +37,31 @@ class Card {
                 return Integer.toString(num);
         }
     }
+    public int intType(){
+        switch (this.type) {
+            case "SPADE" :
+                return 0;
+            case "DIAMOND" :
+                return 1;
+            case "HEART" :
+                return 2;
+            case "CLOVER" :
+                return 3;
+        }
+        return -1;
+    }
     public void showCard(){
         System.out.println("type: " + type + ", number: " + number);
     }
+    public static void printRes(Card winner, Card loser){
+        System.out.println("Winner:"+ winner.type+", "+ winner.number);
+        System.out.println("Loser:"+ loser.type+", "+ loser.number);
+    }
+    abstract public void draw();
+    abstract public int compareTo(Card rival);
 }
 
-class OneCard extends Card {
+class OneCard extends Card{
     public String strShape(int shape) {
         switch (shape) {
             case 0 :
@@ -58,6 +77,33 @@ class OneCard extends Card {
     }
     public void showCard(){
         System.out.println("type: "+type+", number: "+strNum(number));
+    }
+    @Override
+    public void draw(){
+        int shape = (int)(Math.random()*4);
+        int num = (int)(Math.random()*12)+1;
+
+        this.type = strShape(shape);
+        this.number = num;
+    }
+    @Override
+    public int compareTo(Card rival){
+        int myType = this.intType();
+        int rivalType = rival.intType();
+        if(myType < rivalType){
+            return 1;
+        }
+        else if(myType < rivalType){
+            return 2;
+        }
+        else{
+            if(this.number > rival.number){
+                return 1;
+            }
+            else{
+                return 2;
+            }
+        }
     }
 }
 
@@ -90,20 +136,52 @@ class Uno extends Card {
     public void showCard() {
         System.out.println("type: "+type+", number: "+strNum(number));
     }
+    @Override
+    public void draw(){
+        int shape = (int)(Math.random()*4);
+        int num = (int)(Math.random()*12)+1;
+
+        this.type = strShape(shape);
+        this.number = num;
+    }
+    @Override
+    public int compareTo(Card rival){
+        if(this.number > rival.number){
+            return 1;
+        } 
+        else
+            return 2;
+    }
 }
 
 public class Main2{
     public static void main(String[] args){
-        Card cardArr[] = new Card[3];
-        cardArr[0] = new Card();
-        cardArr[0].randomCard();
+        Card cardArr[] = new Card[4];
+        cardArr[0] = new OneCard();
+        cardArr[0].draw();
         cardArr[1] = new OneCard();
-        cardArr[1].randomCard();
+        cardArr[1].draw();
         cardArr[2] = new Uno();
-        cardArr[2].randomCard();
+        cardArr[2].draw();
+        cardArr[3] = new Uno();
+        cardArr[3].draw();
 
-        for(int i=0;i<3;i++){
+        for(int i=0;i<4;i++){
             cardArr[i].showCard();
+        }
+        int res = cardArr[0].compareTo(cardArr[1]);
+        if(res == 1){
+            Card.printRes(cardArr[0], cardArr[1]);
+        }
+        else if(res == 2){
+            Card.printRes(cardArr[1], cardArr[0]);
+        }
+        res = cardArr[2].compareTo(cardArr[3]);
+        if(res == 1){
+            Card.printRes(cardArr[2], cardArr[3]);
+        }
+        else if(res == 2){
+            Card.printRes(cardArr[3], cardArr[2]);
         }
     }
 }
