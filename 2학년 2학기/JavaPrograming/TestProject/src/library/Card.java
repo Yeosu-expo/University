@@ -65,6 +65,7 @@ public abstract class Card implements Comparable<Card>{
     }
     abstract public void draw();
     abstract public int compareTo(Card rival);
+    abstract public boolean equals(Card card);
 }
 
 

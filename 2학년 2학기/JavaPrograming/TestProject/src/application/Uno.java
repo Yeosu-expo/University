@@ -46,4 +46,8 @@ public class Uno extends Card {
         else
             return 2;
     }
+    @Override
+    public boolean equals(Card card){
+        return true;
+    }
 }

@@ -2,6 +2,9 @@ package application;
 import library.Card;
 
 public class OneCard extends Card{
+    public OneCard(){
+        this.draw();
+    }
     public String strShape(int shape) {
         switch (shape) {
             case 0 :
@@ -44,6 +47,13 @@ public class OneCard extends Card{
                 return 2;
             }
         }
+    }
+    @Override
+    public boolean equals(Card card) {
+        if(this.type == card.type && this.number == card.number)
+            return true;
+        else
+            return false;
     }
 }
 
