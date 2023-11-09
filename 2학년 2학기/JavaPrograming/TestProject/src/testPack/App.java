@@ -1,76 +1,46 @@
 package testPack;
 
+import java.util.Random;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class App {
-    public static void getInfo(Scanner sc) {
-        System.out.println("이름, 응시번호 6자리를 공백으로 구분해서 입력하시오.");
-        sc.next();
-        int testNum = sc.nextInt();
-
-        if(testNum%2 == 1){
-            gaType(sc);
-        }
-        else {
-            naType(sc);
-        }
-    }
-
-    public static boolean isPass(int score[]) {
-        if(score[0]>40 && score[1]>40 && score[2]>40 && score[3]>40){
-
-        }
-        else{
-            return false;
-        }
-        double avg = (double)(score[0]+score[1]+score[2]+score[3])/4;
-        if(avg >= 80){
-            return true;
-        }
-        return false;
-    }
-
-    public static void finalResult(boolean res){
-        if(res){
-            System.out.println("시험 합격!");
-        }
-        else{
-            System.out.println("시험 불합격!");
-        }
-    }
-
-    public static void gaType(Scanner sc){
-        int score[] = new int[4];
-        System.out.print("한국어: ");
-        score[0] = sc.nextInt();
-        System.out.print("컴퓨터구조: ");
-        score[1] = sc.nextInt();
-        System.out.print("데이터베이스: ");
-        score[2] = sc.nextInt();
-        System.out.print("소프트웨어공학: ");
-        score[3] = sc.nextInt();
-
-        boolean res = isPass(score);
-        finalResult(res);
-    }
-
-    public static void naType(Scanner sc){
-        int score[] = new int[4];
-        System.out.print("한국어: ");
-        score[0] = sc.nextInt();
-        System.out.print("영어: ");
-        score[1] = sc.nextInt();
-        System.out.print("세법: ");
-        score[2] = sc.nextInt();
-        System.out.print("국제법: ");
-        score[3] = sc.nextInt();
-
-        boolean res = isPass(score);
-        finalResult(res);
-    }
-    
     public static void main(String[] args) throws Exception {
-        var sc = new Scanner(System.in);
-        getInfo(sc);
+        String[] fruits = {"Strawberry", "Watermelon", "Apple", "Orange", "Banana", "Blueberry"};
+        int index = (new Random()).nextInt(fruits.length);
+        String solution = fruits[index];
+        StringBuffer ans = new StringBuffer(solution.length());
+        for(int i=0;i<solution.length();i++){
+            ans.append("_");
+        }
+        Scanner sc = new Scanner(System.in);
+        while(true){
+            System.out.print("Input a character: ");
+            String input = sc.next();
+            for(int i=0;i<solution.length();i++){
+                if(solution.charAt(i) == input.charAt(0)){
+                    ans.replace(i, i+1, input);
+                }
+            }
+            StringTokenizer st = new StringTokenizer(solution);
+            int isOK = 0;
+            String ansStr = ans.toString();
+            for(int i=0;i<st.countTokens();i++){
+                if(st.hasMoreTokens()){
+                    char c = ansStr.charAt(i);
+                    String str = String.valueOf(c);
+                    if(str != st.nextToken()){
+                        break;
+                    }
+                }
+                System.out.println("Your Right!");
+                isOK = 1;
+            }
+            if (isOK==1) {
+                break;
+            }
+            System.out.println(ans);
+        }
+        sc.close();
     }
 }
