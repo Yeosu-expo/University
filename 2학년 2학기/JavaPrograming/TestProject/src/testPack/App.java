@@ -33,7 +33,7 @@ class PrinterGeneric<T>{
 class PrintArrClass<T>{
     public static <T> void prinrArray(T[] arr){
         for(int i=1;i<=arr.length;i++){
-            System.out.println(i+"번째: "+ arr[i]);
+            System.out.println(i+"번째: "+ arr[i-1]);
         }
     }
 }
