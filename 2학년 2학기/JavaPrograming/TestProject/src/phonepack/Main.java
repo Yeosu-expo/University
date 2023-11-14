@@ -1,5 +1,4 @@
 package phonepack;
-
 import java.util.Scanner;
 
 class Phone {

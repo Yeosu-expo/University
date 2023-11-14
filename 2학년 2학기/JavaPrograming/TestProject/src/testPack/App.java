@@ -1,46 +1,59 @@
 package testPack;
 
-import java.util.Random;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+class Orange{
+
+}
+class Apple{
+
+}
+class Plastic{
+
+}
+
+class PrinterGeneric<T>{
+    private T obj;
+    public void set(T obj){
+        this.obj = obj;
+    }
+    public String returnType(){
+        return obj.toString();
+    }
+    public void print(){
+        if(obj instanceof Apple)
+            System.out.println("Apple");
+        else if(obj instanceof Orange)
+            System.out.println("Orange");
+        else if(obj instanceof Plastic)
+            System.out.println("Plastic");
+    }
+
+}
+
+class PrintArrClass<T>{
+    public static <T> void prinrArray(T[] arr){
+        for(int i=0;i<arr.length;i++){
+            System.out.println(i+"번째: "+ arr[i]);
+        }
+    }
+}
+
+
 
 public class App {
     public static void main(String[] args) throws Exception {
-        String[] fruits = {"Strawberry", "Watermelon", "Apple", "Orange", "Banana", "Blueberry"};
-        int index = (new Random()).nextInt(fruits.length);
-        String solution = fruits[index];
-        StringBuffer ans = new StringBuffer(solution.length());
-        for(int i=0;i<solution.length();i++){
-            ans.append("_");
+        PrinterGeneric<Apple> a = new PrinterGeneric<Apple>();
+        PrinterGeneric<Orange> o = new PrinterGeneric<Orange>();
+        PrinterGeneric<Plastic> p = new PrinterGeneric<Plastic>();
+
+        a.print();
+        o.print();
+        p.print();
+
+        Integer[] intArr = new Integer[10];
+        for(int i=0;i<10;i++){
+            intArr[i] = i+1;
         }
-        Scanner sc = new Scanner(System.in);
-        while(true){
-            System.out.print("Input a character: ");
-            String input = sc.next();
-            for(int i=0;i<solution.length();i++){
-                if(solution.charAt(i) == input.charAt(0)){
-                    ans.replace(i, i+1, input);
-                }
-            }
-            StringTokenizer st = new StringTokenizer(solution);
-            int isOK = 0;
-            String ansStr = ans.toString();
-            for(int i=0;i<st.countTokens();i++){
-                if(st.hasMoreTokens()){
-                    char c = ansStr.charAt(i);
-                    String str = String.valueOf(c);
-                    if(str != st.nextToken()){
-                        break;
-                    }
-                }
-                System.out.println("Your Right!");
-                isOK = 1;
-            }
-            if (isOK==1) {
-                break;
-            }
-            System.out.println(ans);
-        }
-        sc.close();
+
+        PrintArrClass.prinrArray(intArr);
     }
 }
