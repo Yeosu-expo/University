@@ -24,22 +24,16 @@ public class App {
             }
             StringTokenizer st = new StringTokenizer(solution);
             int isOK = 0;
-            String ansStr = ans.toString();
-            for(int i=0;i<st.countTokens();i++){
-                if(st.hasMoreTokens()){
-                    char c = ansStr.charAt(i);
-                    String str = String.valueOf(c);
-                    if(str != st.nextToken()){
-                        break;
-                    }
-                }
-                System.out.println("Your Right!");
+            
+            String token = st.nextToken();
+            if(ans.toString().equals(token)){
                 isOK = 1;
             }
+            System.out.println(ans);
             if (isOK==1) {
+                System.out.println("Your Right");
                 break;
             }
-            System.out.println(ans);
         }
         sc.close();
     }
