@@ -1,16 +1,5 @@
 package testPack;
 
-class Number{
-    private Integer ob;
-
-    public void set(Integer o) {
-        ob = o;
-    }
-    public Integer get() {
-        return ob;
-    }
-}
-
 class Box<T>{
     private T ob;
 
@@ -22,13 +11,9 @@ class Box<T>{
     }
 }
 
-class BoxNum<T> extends Number {
-
-}
-
 public class BoxSwapDemo {
-    public static void swapBox1(BoxNum<?> obj1, BoxNum<?> obj2) {
-        BoxNum<?> tmp = new BoxNum<>();
+    public static void swapBox1(Box<Integer> obj1, Box<Integer> obj2) {
+        Box<Integer> tmp = new Box<>();
         tmp.set(obj1.get());
         obj1.set(obj2.get());
         obj2.set(tmp.get());
@@ -39,10 +24,10 @@ public class BoxSwapDemo {
         obj2.set(tmp);
     }
     public static void main(String[] args) {
-        BoxNum<Integer> box1 = new BoxNum<>();
+        Box<Integer> box1 = new Box<>();
         box1.set(99);
 
-        BoxNum<Integer> box2 = new BoxNum<>();
+        Box<Integer> box2 = new Box<>();
         box2.set(55);
 
         Box<String> box3 = new Box<>();
