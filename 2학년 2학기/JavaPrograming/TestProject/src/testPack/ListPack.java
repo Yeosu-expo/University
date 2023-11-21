@@ -4,18 +4,13 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 class Member {
-        public int id;
-        public String name;
-        public Member(int id, String name){
-            this.id = id;
-            this.name = name;
-        }
+    public int id;
+    public String name;
+    public Member(int id, String name){
+        this.id = id;
+        this.name = name;
     }
-
-
-public class ListPack {
-
-    static void addMember(ArrayList<Member> MList, Member m){
+    public static void addMember(ArrayList<Member> MList, Member m){
         for(int i=0;i<MList.size();i++){
             Member tmp = MList.get(i);
             if(tmp.id == m.id){
@@ -26,8 +21,7 @@ public class ListPack {
 
         MList.add(m);
     }
-
-    static void removeMember(ArrayList<Member> MList, int id){
+    public static void removeMember(ArrayList<Member> MList, int id){
         int i;
         for(i=0;i<MList.size();i++){
             Member tmp = MList.get(i);
@@ -39,13 +33,16 @@ public class ListPack {
 
         MList.remove(i);
     }
-
-    static void showAll(ArrayList<Member> MList){
+    public static void showAll(ArrayList<Member> MList){
         for(int i=0;i<MList.size();i++){
             Member tmp = MList.get(i);
             System.out.println("ID: " + tmp.id + ", NAME: " + tmp.name);
         }
     }
+}
+
+
+public class ListPack {
     public static void main(String[] args) {
         ArrayList<Member> MList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
@@ -64,15 +61,15 @@ public class ListPack {
                 System.out.print("멤버이름: ");
                 String name = sc.next();
                 Member m = new Member(id, name);
-                addMember(MList, m);
+                Member.addMember(MList, m);
             }
             else if(order == 2){
                 System.out.print("멤버ID: ");
                 int id = sc.nextInt();
-                removeMember(MList, id);
+                Member.removeMember(MList, id);
             }
             else if(order == 3)
-                showAll(MList);
+                Member.showAll(MList);
             else
                 break;
         }
