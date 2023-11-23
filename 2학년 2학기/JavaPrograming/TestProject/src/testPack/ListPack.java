@@ -1,50 +1,57 @@
 package testPack;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
-import java.util.ArrayList;
 
-class Member {
+class Member{
     public int id;
     public String name;
     public Member(int id, String name){
         this.id = id;
         this.name = name;
     }
-    public static void addMember(ArrayList<Member> MList, Member m){
-        for(int i=0;i<MList.size();i++){
-            Member tmp = MList.get(i);
-            if(tmp.id == m.id){
-                System.out.println("this id already exist");
-                return;
-            }
-        }
-
-        MList.add(m);
+    @Override
+    public int hashCode(){
+        return this.id;
     }
-    public static void removeMember(ArrayList<Member> MList, int id){
-        int i;
-        for(i=0;i<MList.size();i++){
-            Member tmp = MList.get(i);
-            if(tmp.id == id){
-                System.out.println(id+" removed.");
-                break;
-            }
-        }
-
-        MList.remove(i);
+    @Override
+    public boolean equals(Object obj){
+        Member member;
+        if(obj instanceof Member)
+            member = (Member)obj;
+        else
+            return false;
+        if(this.id == member.id)
+            System.out.println("this "+ this.name +" already exist.");
+        return this.id == member.id;
     }
-    public static void showAll(ArrayList<Member> MList){
-        for(int i=0;i<MList.size();i++){
-            Member tmp = MList.get(i);
+    public static void showAll(HashSet<Member> MList){
+        Iterator<Member> it = MList.iterator();
+        while(it.hasNext()){
+            Member tmp = it.next();
             System.out.println("ID: " + tmp.id + ", NAME: " + tmp.name);
         }
     }
 }
 
 
+
+
 public class ListPack {
+    static Member searchMember(HashSet<Member> set, int target){
+        Member res = new Member(0, null);
+        Iterator<Member> it = set.iterator();
+        while(it.hasNext()){
+            Member tmp = it.next();
+            if(target == tmp.id)
+                res = tmp;
+        }
+
+        return res;
+    }
     public static void main(String[] args) {
-        ArrayList<Member> MList = new ArrayList<>();
+        HashSet<Member> hashSetList = new HashSet<>();
         Scanner sc = new Scanner(System.in);
         
         while(true){
@@ -61,18 +68,20 @@ public class ListPack {
                 System.out.print("멤버이름: ");
                 String name = sc.next();
                 Member m = new Member(id, name);
-                Member.addMember(MList, m);
+                hashSetList.add(m);
             }
             else if(order == 2){
                 System.out.print("멤버ID: ");
                 int id = sc.nextInt();
-                Member.removeMember(MList, id);
+                Member target = searchMember(hashSetList, id);
+                hashSetList.remove(target);
             }
             else if(order == 3)
-                Member.showAll(MList);
+                Member.showAll(hashSetList);
             else
                 break;
         }
         sc.close();
+
     }
 }
